@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       translations: TranslationService(),
       localizationsDelegates: [GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
       supportedLocales: [const Locale("pt", "BR"), const Locale("es", "ES"), const Locale("en", "US")],
-      title: 'name_app'.tr,
+      title: 'nameApp'.tr,
       theme: Themes().lightTheme,
       darkTheme: Themes().darkTheme,
       themeMode: ThemeService().getThemeMode(),

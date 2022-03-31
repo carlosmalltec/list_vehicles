@@ -4,7 +4,7 @@ import '/modules/home/presenter/controller/vehicle_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-class HomeBindings implements Bindings {
+class VehicleBindings implements Bindings {
   @override
   void dependencies() {
     Get.put(Dio());

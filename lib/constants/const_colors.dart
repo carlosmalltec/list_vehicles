@@ -11,8 +11,8 @@ class ConstColors {
   static const Color background = Color(0xFFdedede);
 
   //CORES PARA CAMPOS DO FORMULÁRIO
-  static const Color placeholder = Color(0xFF8F92B7);
   static const Color border = Color(0xFFB6B9D0);
+  static const Color placeholder = border;
   static const Color danger = Color(0xFFD5543A);
   static const Color colorText = Color(0xFF312F4F);
   static const Color white = Color(0xFFFFFFFF);

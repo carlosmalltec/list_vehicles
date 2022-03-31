@@ -5,7 +5,6 @@ import 'package:appvehicles/modules/home/external/datasource/vehicle_datasource_
 import 'package:appvehicles/modules/home/infra/models/vehicle_impl.dart';
 import 'package:get/get.dart';
 
-
 class VehicleController extends GetxController {
   final VehicleDatasourceImpl request;
 
@@ -35,7 +34,7 @@ class VehicleController extends GetxController {
     listVehicles.clear();
     _pagination.value = false;
     _page.value = _pageOne;
-    await _getFindVehicle(isFirst);
+    await _getFindVehicle();
   }
 
   onScroll(double scrollPosition, double scrollMax) async {
@@ -57,12 +56,12 @@ class VehicleController extends GetxController {
     await getFirstPage(true);
   }
 
-  _getFindVehicle([isFirst = false]) async {
+  _getFindVehicle() async {
     try {
       await 0.5.delay();
       final _response = await request.vehiclesDatasource(_page.value);
       if (_response.statusCode != 200) {
-        await ApplicationAlerts.w(title: 'Oops!', body: 'Não foi possível listar os dados');
+        await ApplicationAlerts.w(title: 'Oops!', body: 'failureList'.tr);
         isLoading.value = ApplicationLoading.notLoading;
         return;
       }
@@ -71,14 +70,13 @@ class VehicleController extends GetxController {
       bool _isEmptyData = _response.model?.isEmpty ?? false;
       if (_isEmptyData && listVehicles.isNotEmpty) {
         _pagination.value = true;
-        ApplicationAlerts.s(title: 'Oops!', body: 'Todos veículos já foram listados');
+        ApplicationAlerts.s(title: 'Oops!', body: 'allListVehicles'.tr);
         isLoading.value = ApplicationLoading.notLoading;
         return;
       }
       if (_response.model != null) listVehicles.addAll(_response.model!);
       isLoading.value = ApplicationLoading.notLoading;
-      _page.value = _page.value++;
-      print('_page.value ${_page.value}');
+      _page.value = _page.value + 1;
     } catch (e) {
       ApplicationPrintLogger.d('ERROR CONTROLLER VEICULO ===> $e', name: 'getFindVehicle');
       isLoading.value = ApplicationLoading.notLoading;
