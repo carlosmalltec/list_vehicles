@@ -7,4 +7,5 @@ const Map<String, String> pt_BR = {
   "buttonMore": "Ver mais",
   "pageVehicleDetails": "Detalhes do veículo",
   "back": "Voltar",
+  "errorVerifyNetwork": "verifique sua conexão para continuar navegando",
 };

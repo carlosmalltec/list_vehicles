@@ -1,14 +1,16 @@
 import 'package:appvehicles/core/alerts/application_alerts.dart';
 import 'package:appvehicles/core/enum/application_loading.dart';
 import 'package:appvehicles/core/logger/application_print_logger.dart';
+import 'package:appvehicles/core/network/check_connecting_network.dart';
 import 'package:appvehicles/modules/home/external/datasource/vehicle_datasource_impl.dart';
 import 'package:appvehicles/modules/home/infra/models/vehicle_impl.dart';
 import 'package:get/get.dart';
 
 class VehicleController extends GetxController {
   final VehicleDatasourceImpl request;
+  final CheckConnectingNetwork connectivityStore;
 
-  VehicleController({required this.request});
+  VehicleController({required this.request, required this.connectivityStore});
 
   final RxList<VehicleImpl> listVehicles = RxList<VehicleImpl>();
   final RxBool _pagination = RxBool(false);
@@ -59,6 +61,14 @@ class VehicleController extends GetxController {
   _getFindVehicle() async {
     try {
       await 0.5.delay();
+      bool _isConnected = await connectivityStore.appCheckConnectivity();
+
+      if (!_isConnected) {
+        await ApplicationAlerts.w(title: 'Oops!', body: 'errorVerifyNetwork'.tr);
+        isLoading.value = ApplicationLoading.notLoading;
+        return;
+      }
+
       final _response = await request.vehiclesDatasource(_page.value);
       if (_response.statusCode != 200) {
         await ApplicationAlerts.w(title: 'Oops!', body: 'failureList'.tr);
