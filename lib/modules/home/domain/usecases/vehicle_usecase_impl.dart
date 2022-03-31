@@ -14,6 +14,7 @@ class VehicleUsecaseImpl implements VehicleUsecase {
   @override
   Future<Either<Failures, ResponseVehicle>> findByVehicle(int page) async {
     try {
+      if (page == 0) return left(FailureGeneric(message: 'Paramêtros obrigatórios'));
       return repository.findVehicleRepository(page);
     } catch (e) {
       return left(FailureGeneric(message: 'Paramêtros obrigatórios'));
