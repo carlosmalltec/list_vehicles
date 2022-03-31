@@ -1,5 +1,6 @@
 
 
+import 'package:appvehicles/modules/home/bindings/home_bindings.dart';
 import 'package:appvehicles/modules/splash/bindings/splash_bindings.dart';
 import 'package:appvehicles/modules/splash/presenter/splash_screen.dart';
 import 'package:get/get.dart';
@@ -11,5 +12,6 @@ class AppPages {
 
   static final routes = [
     GetPage(name: Routes.SPLASH, page: () => const SplashScreen(), binding: SplashBindings()),
+    GetPage(name: Routes.PAGE_HOME, page: () => const SplashScreen(), binding: HomeBindings()),
   ];
 }

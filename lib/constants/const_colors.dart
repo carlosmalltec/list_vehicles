@@ -7,6 +7,8 @@ class ConstColors {
   static const Color orange = Color(0xFFFA775D);
   static const Color blue = Color(0xFF0C2D59);
   static const Color fillColor = Color(0xFF263545);
+  static const Color greenDark = Color(0xFF039B6A);
+  static const Color background = Color(0xFFdedede);
 
   //CORES PARA CAMPOS DO FORMULÁRIO
   static const Color placeholder = Color(0xFF8F92B7);
